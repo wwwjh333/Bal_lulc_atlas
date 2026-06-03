@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bal-DC LULC Atlas: UrbanMIM pretraining, Bal-DC LULC Benchmark, and large-scale 0.3 m urban land-cover mapping over Baltimore and Washington, D.C.">
+  <title>Bal-DC LULC Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Bal-DC LULC Atlas</h1>
+      <p class="subtitle">Toward a Foundation Model for Ultra-High-Resolution Urban Land-Cover Classification</p>
+      <p class="authors">
+        <a class="author-link" href="https://wwwjh333.github.io/" target="_blank" rel="noopener noreferrer">Junhao Wu</a><sup class="affil-mark">1</sup>,
+        Aboagye-Ntow Stephen<sup class="affil-mark">1</sup>,
+        Chuyuan Wang<sup class="affil-mark">1</sup>,
+        Michael McGuire<sup class="affil-mark">1</sup>,
+        Wei Yu<sup class="affil-mark">1</sup>,
+        Jianwu Wang<sup class="affil-mark">2</sup>,
+        Xin Huang<sup class="affil-mark">1</sup>
+      </p>
+      <p class="affiliation">
+        <sup class="affil-mark">1</sup> Towson University &nbsp;&nbsp;
+        <sup class="affil-mark">2</sup> University of Maryland, Baltimore County
+      </p>
+      <nav class="button-row" aria-label="Project resources">
+        <a href="#"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Paper</a>
+        <a href="https://github.com/wwwjh333/Bal_lulc_atlas" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i> Code</a>
+        <a href="https://drive.google.com/drive/folders/1Gd9FbzcPZ53MCmZS8FGAk9nLuv0kw1GT?usp=drive_link" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-database" aria-hidden="true"></i> Dataset</a>
+      </nav>
+    </header>
+
+    <section class="section section-abstract" id="abstract">
+      <h2>Abstract</h2>
+      <div class="abstract-text">
+        <p>
+          Ultra-high-resolution (UHR) remote sensing imagery provides the spatial detail needed for fine-grained urban land-cover understanding in complex urban environments. However, existing methods are still mostly based on coarser-resolution settings or focused on downstream model adaptation for UHR imagery, without representation learning strategies designed for the unique characteristics of UHR data. In this paper, we introduce <em>Bal-DC LULC Atlas</em>, a framework for UHR urban land-cover understanding built on large-scale NAIP imagery. <em>Bal-DC LULC Atlas</em> consists of two key components: (1) <em>UrbanMIM</em>, a masked image modeling pretraining strategy designed for UHR urban data to capture multispectral complementarity and spatial heterogeneity in UHR imagery; and (2) the <em>Bal-DC LULC Benchmark</em>, a large-scale annotated benchmark for UHR urban data covering Baltimore and Washington, D.C., with 5 billion labeled pixels for systematic evaluation in complex urban environments. Extensive experiments on this benchmark show that the proposed approach learns representations that capture fine-grained and compositional spatial structures, leading to improved performance on urban land-cover understanding tasks. These results highlight the importance of UHR-specific representation learning for urban land-cover understanding.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="framework">
+      <h2>Framework</h2>
+      <figure class="figure">
+        <img
+          src="assets/framework.png"
+          alt="Bal-DC LULC Atlas pipeline: NAIP RGB–NIR imagery, UrbanMIM pretraining with spectral-aware and heterogeneity-aware masking, fine-tuning on the Bal-DC benchmark, and large-scale urban LULC mapping"
+          width="1600"
+          height="700"
+        >
+      </figure>
+      <p class="caption">
+        Bal-DC LULC Atlas connects UHR-specific masked image modeling, benchmark fine-tuning, and large-scale urban land-cover mapping.
+      </p>
+    </section>
+
+    <section class="section" id="benchmark">
+      <h2>Bal-DC LULC Benchmark</h2>
+      <p class="section-lead">
+        The benchmark covers diverse urban environments from sparse peri-urban landscapes to dense urban cores, with six land-cover classes annotated on 0.3 m RGB–NIR NAIP imagery.
+      </p>
+      <figure class="figure">
+        <img
+          src="assets/data_examples.png"
+          alt="Bal-DC benchmark examples: RGB and ground-truth patches for Baltimore County, Baltimore City, Baltimore City Core, and Washington, D.C."
+          width="1600"
+          height="850"
+        >
+      </figure>
+      <p class="stats-bar">
+        0.3 m NAIP RGB–NIR imagery · Baltimore–Washington D.C. · 5B labeled pixels · 6 land-cover classes
+      </p>
+      <ul class="legend" aria-label="Land-cover class legend">
+        <li><span class="legend-swatch legend-swatch--building" aria-hidden="true"></span> Building</li>
+        <li><span class="legend-swatch legend-swatch--impervious" aria-hidden="true"></span> Impervious Surface</li>
+        <li><span class="legend-swatch legend-swatch--tree" aria-hidden="true"></span> Tree Canopy</li>
+        <li><span class="legend-swatch legend-swatch--herbaceous" aria-hidden="true"></span> Herbaceous Vegetation</li>
+        <li><span class="legend-swatch legend-swatch--water" aria-hidden="true"></span> Open Water</li>
+        <li><span class="legend-swatch legend-swatch--bare" aria-hidden="true"></span> Bare Surface</li>
+      </ul>
+    </section>
+
+    <section class="section" id="atlas">
+      <h2>Interactive Atlas</h2>
+      <div
+        id="atlas-map-host"
+        class="map-placeholder"
+        role="img"
+        aria-label="Interactive atlas coming soon: large-scale UrbanMIM land-cover map over Baltimore and Washington, D.C."
+      >
+        <div class="map-grid" aria-hidden="true"></div>
+        <div class="map-center-text">
+          <h3>Interactive Atlas</h3>
+          <p>Large-scale UrbanMIM land-cover map</p>
+          <p>over Baltimore and Washington, D.C.</p>
+          <p class="map-coming-soon">Coming Soon</p>
+        </div>
+        <aside class="map-layers" aria-label="Map layers (preview)">
+          <h4>Layers</h4>
+          <ul>
+            <li>
+              <label><input type="checkbox" disabled> NAIP RGB</label>
+            </li>
+            <li>
+              <label><input type="checkbox" disabled> UrbanMIM Prediction</label>
+            </li>
+            <li>
+              <label><input type="checkbox" disabled> Ground Truth</label>
+            </li>
+            <li>
+              <label><input type="checkbox" disabled> Tile Boundary</label>
+            </li>
+          </ul>
+        </aside>
+        <div class="map-legend">
+          <ul class="legend" aria-label="Land-cover class legend">
+            <li><span class="legend-swatch legend-swatch--building" aria-hidden="true"></span> Building</li>
+            <li><span class="legend-swatch legend-swatch--impervious" aria-hidden="true"></span> Impervious Surface</li>
+            <li><span class="legend-swatch legend-swatch--tree" aria-hidden="true"></span> Tree Canopy</li>
+            <li><span class="legend-swatch legend-swatch--herbaceous" aria-hidden="true"></span> Herbaceous Vegetation</li>
+            <li><span class="legend-swatch legend-swatch--water" aria-hidden="true"></span> Open Water</li>
+            <li><span class="legend-swatch legend-swatch--bare" aria-hidden="true"></span> Bare Surface</li>
+          </ul>
+        </div>
+      </div>
+      <p class="caption">
+        The interactive atlas will allow users to zoom into large-scale UrbanMIM land-cover maps and inspect fine-grained predictions around buildings, roads, vegetation, water, and bare surfaces.
+      </p>
+    </section>
+
+    <footer class="site-footer">
+      &copy; Bal-DC LULC Atlas Project
+    </footer>
+  </main>
+</body>
+</html>
