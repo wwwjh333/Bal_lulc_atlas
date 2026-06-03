@@ -1,0 +1,15 @@
+{
+  "map": {
+    "center": [39.15, -77.05],
+    "zoom": 10
+  },
+  "layers": {
+    "naipUrl": "https://tiles.arcgis.com/tiles/ZwA0Q1mheCEc5yXS/arcgis/rest/services/bal_publish_map/MapServer",
+    "predictionUrl": "https://tiles.arcgis.com/tiles/ZwA0Q1mheCEc5yXS/arcgis/rest/services/bal_publish_pred_map/MapServer",
+    "groundTruthUrl": "",
+    "tileBoundaryUrl": ""
+  },
+  "prediction": {
+    "opacity": 0.55
+  }
+}

@@ -47,6 +47,16 @@ docs/
 
 https://github.com/wwwjh333/Bal_lulc_atlas
 
-## Later: interactive map
+## Interactive map
 
-Replace the `.map-placeholder` block in `index.html` with a Leaflet `#map` div, add `docs/js/map.js`, and tile directories under `docs/atlas_tiles/` (naip, urbanmim, gt). Class colors in `style.css` match the paper legend.
+Inspired by the simpler static version of `webmap-demo` (ArcGIS MapServer URLs + layer toggles). This site uses **Leaflet + esri-leaflet** (no Next.js build).
+
+Edit [`docs/config/map-config.json`](docs/config/map-config.json):
+
+- `layers.naipUrl` — NAIP RGB MapServer
+- `layers.predictionUrl` — UrbanMIM prediction MapServer
+- `layers.groundTruthUrl` / `tileBoundaryUrl` — optional; hidden when empty
+- `map.center` / `map.zoom` — initial view (lat, lng)
+- `prediction.opacity` — default overlay opacity
+
+Same demo endpoints as `D:\atlas_web\webmap-demo\public\config\app-config.json` are pre-filled for Baltimore tiles.

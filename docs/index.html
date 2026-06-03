@@ -88,33 +88,27 @@
 
     <section class="section" id="atlas">
       <h2>Interactive Atlas</h2>
-      <div
-        id="atlas-map-host"
-        class="map-placeholder"
-        role="img"
-        aria-label="Interactive atlas coming soon: large-scale UrbanMIM land-cover map over Baltimore and Washington, D.C."
-      >
-        <div class="map-grid" aria-hidden="true"></div>
-        <div class="map-center-text">
-          <h3>Interactive Atlas</h3>
-          <p>Large-scale UrbanMIM land-cover map</p>
-          <p>over Baltimore and Washington, D.C.</p>
-          <p class="map-coming-soon">Coming Soon</p>
-        </div>
-        <aside class="map-layers" aria-label="Map layers (preview)">
+      <div id="atlas-map-host" class="map-host" aria-label="Interactive land-cover atlas over Baltimore and Washington, D.C.">
+        <div id="map" class="map-canvas"></div>
+        <p class="map-status" role="status" hidden></p>
+        <aside class="map-layers" aria-label="Map layers">
           <h4>Layers</h4>
           <ul>
             <li>
-              <label><input type="checkbox" disabled> NAIP RGB</label>
+              <label><input id="layer-naip" type="checkbox" checked> NAIP RGB</label>
             </li>
             <li>
-              <label><input type="checkbox" disabled> UrbanMIM Prediction</label>
+              <label><input id="layer-prediction" type="checkbox" checked> UrbanMIM Prediction</label>
             </li>
-            <li>
-              <label><input type="checkbox" disabled> Ground Truth</label>
+            <li class="map-layer-opacity">
+              <span class="map-layer-opacity-label">Prediction opacity <output id="prediction-opacity-value">0.55</output></span>
+              <input id="prediction-opacity" type="range" min="0" max="1" step="0.01" value="0.55" aria-label="Prediction opacity">
             </li>
-            <li>
-              <label><input type="checkbox" disabled> Tile Boundary</label>
+            <li data-layer-row="gt" hidden>
+              <label><input id="layer-gt" type="checkbox" disabled> Ground Truth</label>
+            </li>
+            <li data-layer-row="boundary" hidden>
+              <label><input id="layer-boundary" type="checkbox" disabled> Tile Boundary</label>
             </li>
           </ul>
         </aside>
@@ -130,7 +124,7 @@
         </div>
       </div>
       <p class="caption">
-        The interactive atlas will allow users to zoom into large-scale UrbanMIM land-cover maps and inspect fine-grained predictions around buildings, roads, vegetation, water, and bare surfaces.
+        Zoom and pan to explore NAIP RGB imagery and UrbanMIM land-cover predictions across Baltimore and Washington, D.C.
       </p>
     </section>
 
@@ -138,5 +132,9 @@
       &copy; Bal-DC LULC Atlas Project
     </footer>
   </main>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://unpkg.com/esri-leaflet@3.0.16/dist/esri-leaflet.js" crossorigin=""></script>
+  <script src="js/map.js"></script>
 </body>
 </html>

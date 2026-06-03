@@ -283,66 +283,60 @@ body {
   background: var(--class-bare);
 }
 
-/* Map placeholder */
-.map-placeholder {
+/* Interactive map */
+.map-host {
   position: relative;
   height: 440px;
   border: 1px solid var(--border-mid);
-  background: #f7f7f7;
+  background: #f0f0f0;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.map-grid {
+.map-canvas {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(to right, #eeeeee 1px, transparent 1px),
-    linear-gradient(to bottom, #eeeeee 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.45;
-  pointer-events: none;
+  z-index: 0;
+  background: #e8e8e8;
 }
 
-.map-center-text {
+.map-host .leaflet-container {
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+.map-status {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px 120px;
-  pointer-events: none;
-}
-
-.map-center-text h3 {
-  margin: 0 0 8px;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.map-center-text p {
-  margin: 0 0 4px;
-  font-size: 14px;
+  left: 12px;
+  top: 12px;
+  max-width: calc(100% - 220px);
+  z-index: 1001;
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-mid);
+  font-size: 12px;
   color: var(--text-muted);
-  max-width: 420px;
+  pointer-events: none;
 }
 
-.map-coming-soon {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.04em;
+.map-status--error {
+  color: #8b0000;
+  border-color: #e8b4b4;
+  background: rgba(255, 245, 245, 0.95);
+}
+
+.map-host--ready .map-status[hidden] {
+  display: none !important;
 }
 
 .map-layers {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 2;
+  top: 12px;
+  right: 12px;
+  z-index: 1000;
   margin: 0;
   padding: 12px 14px;
   background: var(--surface);
@@ -350,7 +344,8 @@ body {
   border-radius: 6px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   font-size: 13px;
-  min-width: 168px;
+  min-width: 188px;
+  pointer-events: auto;
 }
 
 .map-layers h4 {
@@ -379,19 +374,46 @@ body {
   align-items: center;
   gap: 8px;
   color: var(--text-muted);
-  cursor: default;
+  cursor: pointer;
 }
 
 .map-layers input[type="checkbox"] {
   margin: 0;
   accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.map-layer-opacity {
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.map-layer-opacity-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.map-layer-opacity-label output {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.map-layers input[type="range"] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--btn-bg);
 }
 
 .map-legend {
   position: absolute;
-  left: 16px;
-  bottom: 16px;
-  z-index: 2;
+  left: 12px;
+  bottom: 12px;
+  z-index: 1000;
+  pointer-events: none;
   padding: 10px 12px;
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid var(--border-mid);
@@ -440,8 +462,8 @@ body {
     font-size: 24px;
   }
 
-  .map-center-text {
-    padding: 24px 16px 80px;
+  .map-host {
+    height: 360px;
   }
 
   .map-layers {
