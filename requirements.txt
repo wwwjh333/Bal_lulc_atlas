@@ -1,0 +1,10 @@
+torch==2.4.1
+torchvision==0.19.1
+numpy==1.26.4
+pandas==2.2.3
+Pillow==10.4.0
+rasterio==1.4.3
+tqdm==4.67.1
+matplotlib==3.9.2
+accelerate==0.34.2
+transformers==4.46.3
